@@ -1,0 +1,176 @@
+{% extends "base.html" %}
+
+{% block title %}Classification Results - Organic Fruit Classification{% endblock %}
+
+{% block content %}
+<!-- Results Section -->
+<section class="results-section">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <!-- Results Card -->
+                <div class="results-card slide-in">
+                    <div class="text-center mb-4">
+                        <h1 class="results-title">Classification Results</h1>
+                        <p class="text-muted">AI analysis completed successfully</p>
+                    </div>
+                    
+                    <!-- Main Result -->
+                    <div class="main-result">
+                        <div class="row align-items-center">
+                            <div class="col-md-6">
+                                <div class="result-info">
+                                    <div class="fruit-icon-large">
+                                        {% if fruit_type == 'apple' %}
+                                            <i class="fas fa-apple-alt" style="color: #dc3545;"></i>
+                                        {% elif fruit_type == 'banana' %}
+                                            <i class="fas fa-seedling" style="color: #ffc107;"></i>
+                                        {% elif fruit_type == 'grapes' %}
+                                            <i class="fas fa-circle" style="color: #6f42c1;"></i>
+                                        {% elif fruit_type == 'watermelon' %}
+                                            <i class="fas fa-circle" style="color: #198754;"></i>
+                                        {% endif %}
+                                    </div>
+                                    <h2 class="fruit-name">{{ fruit_info.name or fruit_type.title() }}</h2>
+                                    <div class="confidence-score">
+                                        <span class="confidence-label">Confidence:</span>
+                                        <span class="confidence-value">{{ "%.1f"|format(confidence) }}%</span>
+                                    </div>
+                                    <div class="confidence-bar">
+                                        <div class="confidence-fill" style="width: {{ confidence }}%"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                {% if fruit_info %}
+                                <div class="fruit-summary">
+                                    <h4>Quick Facts</h4>
+                                    <ul class="fact-list">
+                                        <li><strong>Scientific Name:</strong> {{ fruit_info.scientific_name }}</li>
+                                        <li><strong>Calories per 100g:</strong> {{ fruit_info.calories_per_100g }}</li>
+                                        <li><strong>Season:</strong> {{ fruit_info.season }}</li>
+                                        <li><strong>Origin:</strong> {{ fruit_info.origin }}</li>
+                                    </ul>
+                                </div>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- All Predictions -->
+                    <div class="all-predictions">
+                        <h4 class="mb-3">Detailed Analysis</h4>
+                        <div class="row">
+                            {% for prediction in predictions[:4] %}
+                            <div class="col-lg-3 col-md-6 mb-3">
+                                <div class="prediction-item {% if loop.first %}active{% endif %}">
+                                    <div class="prediction-header">
+                                        <span class="fruit-name">{{ prediction.class.title() }}</span>
+                                        <span class="confidence">{{ "%.1f"|format(prediction.confidence) }}%</span>
+                                    </div>
+                                    <div class="prediction-bar">
+                                        <div class="prediction-fill" style="width: {{ prediction.confidence }}%"></div>
+                                    </div>
+                                    <small class="model-info">{{ prediction.model }}</small>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    
+                    <!-- Action Buttons -->
+                    <div class="action-buttons text-center mt-4">
+                        <a href="{{ url_for('fruit_info', fruit_type=fruit_type) }}" class="btn btn-primary btn-lg me-3">
+                            <i class="fas fa-info-circle"></i> Learn More About {{ fruit_info.name or fruit_type.title() }}
+                        </a>
+                        <a href="{{ url_for('index') }}" class="btn btn-outline-primary btn-lg">
+                            <i class="fas fa-camera"></i> Classify Another
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Nutritional Benefits Section -->
+{% if fruit_info and fruit_info.nutritional_benefits %}
+<section class="benefits-section">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <div class="benefits-card fade-in">
+                    <h3 class="text-center mb-4">Health Benefits of {{ fruit_info.name }}</h3>
+                    <div class="row">
+                        {% for benefit in fruit_info.nutritional_benefits %}
+                        <div class="col-md-6 mb-3">
+                            <div class="benefit-item">
+                                <i class="fas fa-check-circle text-success me-2"></i>
+                                {{ benefit }}
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endif %}
+
+<!-- Related Fruits Section -->
+<section class="related-fruits">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h3>Explore Other Fruits</h3>
+            <p class="text-muted">Discover nutritional information about other fruits</p>
+        </div>
+        
+        <div class="row g-4">
+            {% for key, info in [('apple', {'name': 'Apple', 'icon': 'fas fa-apple-alt', 'color': '#dc3545'}), 
+                                ('banana', {'name': 'Banana', 'icon': 'fas fa-seedling', 'color': '#ffc107'}), 
+                                ('grapes', {'name': 'Grapes', 'icon': 'fas fa-circle', 'color': '#6f42c1'}), 
+                                ('watermelon', {'name': 'Watermelon', 'icon': 'fas fa-circle', 'color': '#198754'})] %}
+                {% if key != fruit_type %}
+                <div class="col-lg-4 col-md-6">
+                    <a href="{{ url_for('fruit_info', fruit_type=key) }}" class="fruit-link">
+                        <div class="related-fruit-card">
+                            <div class="fruit-icon">
+                                <i class="{{ info.icon }}" style="color: {{ info.color }};"></i>
+                            </div>
+                            <h5>{{ info.name }}</h5>
+                            <p>Learn about nutritional benefits</p>
+                        </div>
+                    </a>
+                </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block scripts %}
+<script>
+// Add smooth animations when page loads
+document.addEventListener('DOMContentLoaded', function() {
+    // Animate confidence bar
+    setTimeout(function() {
+        const confidenceFill = document.querySelector('.confidence-fill');
+        if (confidenceFill) {
+            confidenceFill.style.transition = 'width 2s ease-in-out';
+            confidenceFill.style.width = '{{ confidence }}%';
+        }
+        
+        // Animate prediction bars
+        const predictionFills = document.querySelectorAll('.prediction-fill');
+        predictionFills.forEach((fill, index) => {
+            setTimeout(() => {
+                fill.style.transition = 'width 1.5s ease-in-out';
+                fill.style.width = fill.getAttribute('style').match(/width:\s*([^;]+)/)[1];
+            }, index * 200);
+        });
+    }, 500);
+});
+</script>
+{% endblock %}

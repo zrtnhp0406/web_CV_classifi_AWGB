@@ -1,0 +1,210 @@
+{% extends "base.html" %}
+
+{% block title %}Organic Fruit Classification - Home{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="hero">
+    <div class="hero-overlay"></div>
+    <div class="hero-background"></div>
+    <div class="container hero-content">
+        <div class="row align-items-center min-vh-100">
+            <div class="col-lg-6">
+                <h1 class="hero-title fade-in">
+                    <span class="organic-text">Organic</span> fruit classification
+                </h1>
+                <p class="hero-subtitle fade-in delay-1">
+                    Fresh, organic ingredients. Healthy, AI-powered classification.<br>
+                    Right at your fingertips.
+                </p>
+                <a href="#classify" class="btn btn-primary btn-lg fade-in delay-2">
+                    Start Classification
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Features Section -->
+<section class="features" id="features">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="section-title">Choose your program below<br>to see how we can help</h2>
+        </div>
+        
+        <div class="row g-4">
+            <!-- Classification Feature -->
+            <div class="col-lg-3 col-md-6">
+                <div class="feature-card">
+                    <div class="feature-image">
+                        <img src="https://pixabay.com/get/g706b9f6208573147da823e3a81a20f4f9fb4e4b1b8615db35cf60486238d899fcf8e9321738a8754a11aa0d24315d1c29bc3703735f31f6048d0731da75ff6ce_1280.jpg" alt="Fruit Classification" class="img-fluid">
+                    </div>
+                    <div class="feature-content">
+                        <h4>AI Classification</h4>
+                        <p>Advanced deep learning models to identify and classify fresh fruits with high accuracy.</p>
+                        <a href="#classify" class="btn btn-outline-primary">Classify Now</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Fruit Information -->
+            <div class="col-lg-3 col-md-6">
+                <div class="feature-card">
+                    <div class="feature-image">
+                        <img src="https://pixabay.com/get/gc9255e0cc8fe4f857eb7ef2d3ab858d33319df7f5cd065f3a484e70bd6bff34097750be63bbaff347351a9bff776f9a34504afff8060a8caa089716166953040_1280.jpg" alt="Fruit Information" class="img-fluid">
+                    </div>
+                    <div class="feature-content">
+                        <h4>Nutritional Guide</h4>
+                        <p>Comprehensive information about nutritional benefits and health properties of each fruit.</p>
+                        <a href="{{ url_for('all_fruits') }}" class="btn btn-outline-primary">Learn More</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Organic Quality -->
+            <div class="col-lg-3 col-md-6">
+                <div class="feature-card">
+                    <div class="feature-image">
+                        <img src="https://pixabay.com/get/ga11674fa4950c0a6f9b93a17ee54b4bd6bff040a7df18a182f5f57865a96d7aceb60f61e41807057601e4fc35a0906aff164a3ebddd52b9f22fbe8069cfb0642_1280.jpg" alt="Organic Agriculture" class="img-fluid">
+                    </div>
+                    <div class="feature-content">
+                        <h4>Organic Quality</h4>
+                        <p>Supporting sustainable and organic farming practices for healthier produce.</p>
+                        <a href="{{ url_for('all_fruits') }}" class="btn btn-outline-primary">Discover</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Health Benefits -->
+            <div class="col-lg-3 col-md-6">
+                <div class="feature-card">
+                    <div class="feature-image">
+                        <img src="https://pixabay.com/get/g65d0866b3d70f23299c11681d8acfd004ba286be4dd5dddf1751232743864fe11ecd5b5e6d6dff77f7472f2e34ecdbe58f622017013fd8519256ab03b436118d_1280.jpg" alt="Health Benefits" class="img-fluid">
+                    </div>
+                    <div class="feature-content">
+                        <h4>Health Insights</h4>
+                        <p>Detailed health benefits and nutritional analysis for informed dietary choices.</p>
+                        <a href="{{ url_for('all_fruits') }}" class="btn btn-outline-primary">Explore</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Classification Section -->
+<section class="classify-section" id="classify">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="classify-card">
+                    <div class="text-center mb-4">
+                        <h2 class="section-title">Classify Your Fruit</h2>
+                        <p class="text-muted">Upload an image of your fruit and let our AI identify it for you</p>
+                    </div>
+                    
+                    <form action="{{ url_for('classify') }}" method="post" enctype="multipart/form-data" id="classifyForm">
+                        <div class="upload-area" id="uploadArea">
+                            <div class="upload-content">
+                                <i class="fas fa-cloud-upload-alt upload-icon"></i>
+                                <h4>Drop your image here</h4>
+                                <p>or <span class="browse-text">browse</span> to choose a file</p>
+                                <input type="file" name="file" id="fileInput" accept="image/*" required>
+                            </div>
+                            <div class="preview-area" id="previewArea" style="display: none;">
+                                <img id="previewImage" src="" alt="Preview">
+                                <div class="preview-info">
+                                    <p id="fileName"></p>
+                                    <button type="button" class="btn btn-sm btn-outline-danger" id="removeImage">
+                                        <i class="fas fa-times"></i> Remove
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="text-center mt-4">
+                            <button type="submit" class="btn btn-primary btn-lg" id="classifyBtn" disabled>
+                                <i class="fas fa-brain"></i> Classify Fruit
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Supported Fruits Section -->
+<section class="supported-fruits">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="section-title">Supported Fruits</h2>
+            <p class="text-muted">Our AI can identify these four types of fruits</p>
+        </div>
+        
+        <div class="row g-4">
+            <div class="col-lg-3 col-md-6">
+                <div class="fruit-item">
+                    <div class="fruit-icon">
+                        <i class="fas fa-apple-alt" style="color: #dc3545;"></i>
+                    </div>
+                    <h5>Apple</h5>
+                    <p>Crisp, sweet, and nutritious</p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <div class="fruit-item">
+                    <div class="fruit-icon">
+                        <i class="fas fa-seedling" style="color: #ffc107;"></i>
+                    </div>
+                    <h5>Banana</h5>
+                    <p>Rich in potassium and energy</p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <div class="fruit-item">
+                    <div class="fruit-icon">
+                        <i class="fas fa-circle" style="color: #6f42c1;"></i>
+                    </div>
+                    <h5>Grapes</h5>
+                    <p>Antioxidant-rich clusters</p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <div class="fruit-item">
+                    <div class="fruit-icon">
+                        <i class="fas fa-circle" style="color: #198754;"></i>
+                    </div>
+                    <h5>Watermelon</h5>
+                    <p>Hydrating summer refresher</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Loading Modal -->
+<div class="modal fade" id="loadingModal" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-body text-center py-5">
+                <div class="spinner-border text-primary mb-3" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                </div>
+                <h4>Analyzing Your Fruit...</h4>
+                <p class="text-muted">Our AI is processing your image</p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+// Show loading modal when form is submitted
+document.getElementById('classifyForm').addEventListener('submit', function() {
+    const modal = new bootstrap.Modal(document.getElementById('loadingModal'));
+    modal.show();
+});
+</script>
+{% endblock %}
