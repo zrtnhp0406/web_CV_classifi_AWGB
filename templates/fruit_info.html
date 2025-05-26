@@ -12,45 +12,69 @@ All Fruits Information
 {% if fruit_type == 'all' %}
 <!-- All Fruits Overview -->
 <section class="fruit-overview">
+    <div class="animated-background"></div>
     <div class="container">
         <div class="text-center mb-5 pt-5">
-            <h1 class="page-title">Fruit Information Guide</h1>
-            <p class="lead">Comprehensive nutritional information about our supported fruits</p>
+            <h1 class="page-title gradient-text">🌱 Fruit Information Guide</h1>
+            <p class="lead enhanced-subtitle">Discover comprehensive nutritional information about our supported fruits</p>
+            <div class="decorative-line"></div>
         </div>
         
-        <div class="row g-4">
+        <div class="fruits-grid">
             {% for key, info in all_fruits.items() %}
-            <div class="col-lg-6 mb-4">
-                <div class="fruit-info-card">
-                    <div class="row align-items-center">
-                        <div class="col-md-4">
-                            <div class="fruit-icon-large">
-                                {% if key == 'apple' %}
-                                    <i class="fas fa-apple-alt" style="color: #dc3545;"></i>
-                                {% elif key == 'banana' %}
-                                    <i class="fas fa-seedling" style="color: #ffc107;"></i>
-                                {% elif key == 'grapes' %}
-                                    <i class="fas fa-circle" style="color: #6f42c1;"></i>
-                                {% elif key == 'watermelon' %}
-                                    <i class="fas fa-circle" style="color: #198754;"></i>
-                                {% endif %}
-                            </div>
-                            <h3 class="text-center">{{ info.name }}</h3>
+            <div class="fruit-card-wrapper" data-fruit="{{ key }}">
+                <div class="fruit-info-card-enhanced">
+                    <div class="fruit-card-header">
+                        <div class="fruit-emoji-container">
+                            {% if key == 'apple' %}
+                                <div class="fruit-emoji">🍎</div>
+                            {% elif key == 'banana' %}
+                                <div class="fruit-emoji">🍌</div>
+                            {% elif key == 'grapes' %}
+                                <div class="fruit-emoji">🍇</div>
+                            {% elif key == 'watermelon' %}
+                                <div class="fruit-emoji">🍉</div>
+                            {% endif %}
                         </div>
-                        <div class="col-md-8">
-                            <p class="fruit-description">{{ info.description[:150] }}...</p>
-                            <div class="fruit-stats">
-                                <span class="stat-item">
-                                    <strong>{{ info.calories_per_100g }}</strong> cal/100g
-                                </span>
-                                <span class="stat-item">
-                                    <strong>{{ info.season }}</strong>
-                                </span>
+                        <h3 class="fruit-card-title">{{ info.name }}</h3>
+                        <div class="fruit-scientific-name">{{ info.scientific_name }}</div>
+                    </div>
+                    
+                    <div class="fruit-card-body">
+                        <p class="fruit-description-enhanced">{{ info.description[:120] }}...</p>
+                        
+                        <div class="nutrition-highlights">
+                            <div class="nutrition-item">
+                                <div class="nutrition-icon">🔥</div>
+                                <div class="nutrition-details">
+                                    <span class="nutrition-value">{{ info.calories_per_100g }}</span>
+                                    <span class="nutrition-label">cal/100g</span>
+                                </div>
                             </div>
-                            <a href="{{ url_for('fruit_info', fruit_type=key) }}" class="btn btn-primary">
-                                Learn More <i class="fas fa-arrow-right"></i>
-                            </a>
+                            <div class="nutrition-item">
+                                <div class="nutrition-icon">📅</div>
+                                <div class="nutrition-details">
+                                    <span class="nutrition-value">{{ info.season.split('(')[0].strip() if '(' in info.season else info.season }}</span>
+                                    <span class="nutrition-label">season</span>
+                                </div>
+                            </div>
                         </div>
+                        
+                        <div class="benefits-preview">
+                            <h5>✨ Key Benefits:</h5>
+                            <ul class="benefits-list">
+                                {% for benefit in info.nutritional_benefits[:2] %}
+                                <li>{{ benefit }}</li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="fruit-card-footer">
+                        <a href="{{ url_for('fruit_info', fruit_type=key) }}" class="btn-enhanced">
+                            <span>Explore {{ info.name }}</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </a>
                     </div>
                 </div>
             </div>

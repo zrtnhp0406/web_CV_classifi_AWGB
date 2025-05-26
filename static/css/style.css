@@ -661,6 +661,283 @@ html {
 .fruit-overview {
     padding: 100px 0 50px;
     background: white;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Animated Background */
+.animated-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(-45deg, 
+        rgba(var(--primary), 0.03),
+        rgba(var(--secondary), 0.05),
+        rgba(var(--primary), 0.02),
+        rgba(var(--warning), 0.04));
+    background-size: 400% 400%;
+    animation: gradientShift 15s ease infinite;
+    z-index: -1;
+}
+
+@keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* Enhanced Typography */
+.gradient-text {
+    background: linear-gradient(45deg, rgb(var(--primary)), rgb(var(--secondary)));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-weight: 800;
+    margin-bottom: 1rem;
+}
+
+.enhanced-subtitle {
+    color: rgb(var(--text-muted));
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+}
+
+.decorative-line {
+    width: 100px;
+    height: 4px;
+    background: linear-gradient(90deg, rgb(var(--primary)), rgb(var(--secondary)));
+    margin: 0 auto 3rem;
+    border-radius: 2px;
+}
+
+/* Fruits Grid */
+.fruits-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+.fruit-card-wrapper {
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeInUp 0.8s ease forwards;
+}
+
+.fruit-card-wrapper:nth-child(1) { animation-delay: 0.1s; }
+.fruit-card-wrapper:nth-child(2) { animation-delay: 0.2s; }
+.fruit-card-wrapper:nth-child(3) { animation-delay: 0.3s; }
+.fruit-card-wrapper:nth-child(4) { animation-delay: 0.4s; }
+
+/* Enhanced Fruit Cards */
+.fruit-info-card-enhanced {
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    transition: all 0.4s ease;
+    overflow: hidden;
+    position: relative;
+    border: 1px solid rgba(var(--primary), 0.1);
+}
+
+.fruit-info-card-enhanced:hover {
+    transform: translateY(-15px) scale(1.02);
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+}
+
+.fruit-info-card-enhanced::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, 
+        transparent, 
+        rgba(var(--primary), 0.1), 
+        transparent);
+    transition: left 0.5s ease;
+}
+
+.fruit-info-card-enhanced:hover::before {
+    left: 100%;
+}
+
+/* Card Header */
+.fruit-card-header {
+    text-align: center;
+    padding: 2rem 1.5rem 1rem;
+    background: linear-gradient(135deg, 
+        rgba(var(--primary), 0.05), 
+        rgba(var(--secondary), 0.03));
+}
+
+.fruit-emoji-container {
+    margin-bottom: 1rem;
+}
+
+.fruit-emoji {
+    font-size: 4rem;
+    line-height: 1;
+    display: inline-block;
+    animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+    40% { transform: translateY(-10px); }
+    60% { transform: translateY(-5px); }
+}
+
+.fruit-card-title {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: rgb(var(--text));
+    margin-bottom: 0.5rem;
+}
+
+.fruit-scientific-name {
+    font-style: italic;
+    color: rgb(var(--text-muted));
+    font-size: 0.9rem;
+}
+
+/* Card Body */
+.fruit-card-body {
+    padding: 1.5rem;
+}
+
+.fruit-description-enhanced {
+    color: rgb(var(--text-muted));
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+}
+
+/* Nutrition Highlights */
+.nutrition-highlights {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.nutrition-item {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    background: rgba(var(--primary), 0.05);
+    padding: 1rem;
+    border-radius: 12px;
+    border-left: 4px solid rgb(var(--primary));
+}
+
+.nutrition-icon {
+    font-size: 1.5rem;
+    margin-right: 0.8rem;
+}
+
+.nutrition-details {
+    display: flex;
+    flex-direction: column;
+}
+
+.nutrition-value {
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: rgb(var(--text));
+}
+
+.nutrition-label {
+    font-size: 0.8rem;
+    color: rgb(var(--text-muted));
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* Benefits Preview */
+.benefits-preview h5 {
+    color: rgb(var(--primary));
+    margin-bottom: 0.8rem;
+    font-weight: 600;
+}
+
+.benefits-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.benefits-list li {
+    position: relative;
+    padding-left: 1.5rem;
+    margin-bottom: 0.5rem;
+    color: rgb(var(--text-muted));
+    font-size: 0.9rem;
+}
+
+.benefits-list li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: rgb(var(--success));
+    font-weight: bold;
+}
+
+/* Card Footer */
+.fruit-card-footer {
+    padding: 1.5rem;
+    background: rgba(var(--primary), 0.02);
+    border-top: 1px solid rgba(var(--primary), 0.1);
+}
+
+.btn-enhanced {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    width: 100%;
+    padding: 1rem 2rem;
+    background: linear-gradient(135deg, rgb(var(--primary)), rgb(var(--primary-dark)));
+    color: white;
+    text-decoration: none;
+    border-radius: 12px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-enhanced::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, 
+        transparent, 
+        rgba(255, 255, 255, 0.2), 
+        transparent);
+    transition: left 0.5s ease;
+}
+
+.btn-enhanced:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(var(--primary), 0.3);
+    color: white;
+}
+
+.btn-enhanced:hover::before {
+    left: 100%;
+}
+
+.btn-enhanced i {
+    transition: transform 0.3s ease;
+}
+
+.btn-enhanced:hover i {
+    transform: translateX(5px);
 }
 
 .page-title {
@@ -876,6 +1153,27 @@ html {
     
     .preview-info {
         flex-direction: column;
+        gap: 0.5rem;
+    }
+    
+    /* Enhanced fruit cards responsive */
+    .fruits-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+    
+    .nutrition-highlights {
+        flex-direction: column;
+        gap: 0.8rem;
+    }
+    
+    .fruit-emoji {
+        font-size: 3rem;
+    }
+    
+    .fruit-card-title {
+        font-size: 1.5rem;
+    }olumn;
         text-align: center;
     }
     
