@@ -26,13 +26,13 @@ All Fruits Information
                 <div class="fruit-info-card-enhanced">
                     <div class="fruit-card-header">
                         <div class="fruit-emoji-container">
-                            {% if key == 'apple' %}
+                            {% if key == 'Apple' %}
                                 <div class="fruit-emoji">🍎</div>
-                            {% elif key == 'banana' %}
+                            {% elif key == 'Banana' %}
                                 <div class="fruit-emoji">🍌</div>
-                            {% elif key == 'grapes' %}
+                            {% elif key == 'Grape' %}
                                 <div class="fruit-emoji">🍇</div>
-                            {% elif key == 'watermelon' %}
+                            {% elif key == 'Watermelon' %}
                                 <div class="fruit-emoji">🍉</div>
                             {% endif %}
                         </div>
@@ -93,15 +93,17 @@ All Fruits Information
                 <div class="fruit-header pt-5 mb-5">
                     <div class="row align-items-center">
                         <div class="col-md-4 text-center">
-                            <div class="fruit-icon-xl">
-                                {% if fruit_type == 'apple' %}
-                                    <i class="fas fa-apple-alt" style="color: #dc3545;"></i>
-                                {% elif fruit_type == 'banana' %}
-                                    <i class="fas fa-seedling" style="color: #ffc107;"></i>
-                                {% elif fruit_type == 'grapes' %}
-                                    <i class="fas fa-circle" style="color: #6f42c1;"></i>
-                                {% elif fruit_type == 'watermelon' %}
-                                    <i class="fas fa-circle" style="color: #198754;"></i>
+                            <div class="fruit-icon-xl" style="font-size: 5rem;">
+                                {% if fruit_type == 'Apple' %}
+                                    🍎
+                                {% elif fruit_type == 'Banana' %}
+                                    🍌
+                                {% elif fruit_type == 'Grape' %}
+                                    🍇
+                                {% elif fruit_type == 'Watermelon' %}
+                                    🍉
+                                {% else %}
+                                    🍓
                                 {% endif %}
                             </div>
                         </div>
@@ -184,26 +186,29 @@ All Fruits Information
             <h3>Other Fruits to Explore</h3>
         </div>
         
-        <div class="row g-4">
-            {% for key, info in [('apple', {'name': 'Apple', 'icon': 'fas fa-apple-alt', 'color': '#dc3545'}), 
-                                ('banana', {'name': 'Banana', 'icon': 'fas fa-seedling', 'color': '#ffc107'}), 
-                                ('grapes', {'name': 'Grapes', 'icon': 'fas fa-circle', 'color': '#6f42c1'}), 
-                                ('watermelon', {'name': 'Watermelon', 'icon': 'fas fa-circle', 'color': '#198754'})] %}
-                {% if key != fruit_type %}
-                <div class="col-lg-4 col-md-6">
-                    <a href="{{ url_for('fruit_info', fruit_type=key) }}" class="fruit-link">
-                        <div class="related-fruit-card">
-                            <div class="fruit-icon">
-                                <i class="{{ info.icon }}" style="color: {{ info.color }};"></i>
-                            </div>
-                            <h5>{{ info.name }}</h5>
-                            <p>Learn about this fruit</p>
+    <div class="row g-4">
+        {% for key, info in [
+            ('Apple', {'name': 'Apple', 'emoji': '🍎', 'color': '#dc3545'}),
+            ('Banana', {'name': 'Banana', 'emoji': '🍌', 'color': '#ffc107'}),
+            ('Grape', {'name': 'Grape', 'emoji': '🍇', 'color': '#6f42c1'}),
+            ('Watermelon', {'name': 'Watermelon', 'emoji': '🍉', 'color': '#198754'})
+        ] %}
+            {% if key != fruit_type %}
+            <div class="col-lg-4 col-md-6">
+                <a href="{{ url_for('fruit_info', fruit_type=key) }}" class="fruit-link">
+                    <div class="related-fruit-card">
+                        <div class="fruit-icon" style="font-size: 2rem;">
+                            <span style="color: {{ info.color }};">{{ info.emoji }}</span>
                         </div>
-                    </a>
-                </div>
-                {% endif %}
-            {% endfor %}
-        </div>
+                        <h5>{{ info.name }}</h5>
+                        <p>Learn about this fruit</p>
+                    </div>
+                </a>
+            </div>
+            {% endif %}
+        {% endfor %}
+    </div>
+
     </div>
 </section>
 {% endif %}

@@ -12,7 +12,7 @@ ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif', 'bmp', 'webp'}
 
 # Fruit information database
 FRUIT_INFO = {
-    'banana': {
+    'Banana': {
         'name': 'Banana',
         'scientific_name': 'Musa',
         'description': 'Bananas are curved yellow fruits with sweet, soft flesh inside. They are one of the most popular fruits worldwide and are rich in potassium, vitamin B6, and vitamin C.',
@@ -28,7 +28,7 @@ FRUIT_INFO = {
         'origin': 'Southeast Asia',
         'storage_tips': 'Store at room temperature until ripe, then refrigerate to slow ripening'
     },
-    'watermelon': {
+    'Watermelon': {
         'name': 'Watermelon',
         'scientific_name': 'Citrullus lanatus',
         'description': 'Watermelons are large, round or oval fruits with green rinds and red, juicy flesh. They are about 92% water and are perfect for hot summer days.',
@@ -44,7 +44,7 @@ FRUIT_INFO = {
         'origin': 'Africa',
         'storage_tips': 'Store whole watermelons at room temperature. Cut watermelon should be refrigerated and consumed within 3-5 days'
     },
-    'grapes': {
+    'Grape': {
         'name': 'Grapes',
         'scientific_name': 'Vitis vinifera',
         'description': 'Grapes are small, round or oval fruits that grow in clusters. They come in various colors including green, red, purple, and black, and can be eaten fresh or used to make wine.',
@@ -60,7 +60,7 @@ FRUIT_INFO = {
         'origin': 'Middle East',
         'storage_tips': 'Store in refrigerator in perforated plastic bags. Do not wash until ready to eat'
     },
-    'apple': {
+    'Apple': {
         'name': 'Apple',
         'scientific_name': 'Malus domestica',
         'description': 'Apples are round fruits with crisp flesh and come in many varieties with different colors, flavors, and textures. They are one of the most widely cultivated fruits.',
