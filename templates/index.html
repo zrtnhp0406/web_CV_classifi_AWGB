@@ -34,29 +34,21 @@
         
         <div class="row g-4 justify-content-center">
             <!-- Classification Feature -->
-            <div class="col-lg-5 col-md-6">
-                <div class="feature-card">
-                    <div class="feature-image">
-                        <img src="https://images.unsplash.com/photo-1619566636858-adf3ef46400b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="AI Fruit Classification" class="img-fluid">
-                    </div>
-                    <div class="feature-content">
-                        <h4>AI Classification</h4>
-                        <p>Advanced deep learning models to identify and classify fresh fruits with high accuracy using state-of-the-art computer vision technology.</p>
-                        <a href="#classify" class="btn btn-outline-primary">Classify Now</a>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Fruit Information -->
-            <div class="col-lg-5 col-md-6">
-                <div class="feature-card">
-                    <div class="feature-image">
-                        <img src="https://images.unsplash.com/photo-1610832958506-aa56368176cf?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Nutritional Information" class="img-fluid">
-                    </div>
-                    <div class="feature-content">
-                        <h4>Nutritional Guide</h4>
-                        <p>Comprehensive information about nutritional benefits, health properties, and detailed facts about each fruit type in our database.</p>
-                        <a href="{{ url_for('all_fruits') }}" class="btn btn-outline-primary">Learn More</a>
+            <div class="col-lg-8 col-md-10">
+                <div class="feature-card-single">
+                    <div class="row align-items-center">
+                        <div class="col-md-6">
+                            <div class="feature-image">
+                                <img src="https://images.unsplash.com/photo-1619566636858-adf3ef46400b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="AI Fruit Classification" class="img-fluid">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="feature-content">
+                                <h4>🤖 AI Fruit Classification</h4>
+                                <p>Upload your fruit image and let our advanced deep learning models identify it with high accuracy using state-of-the-art computer vision technology.</p>
+                                <a href="#classify" class="btn btn-primary btn-lg">Start Classifying</a>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -117,8 +109,8 @@
         <div class="row g-4">
             <div class="col-lg-3 col-md-6">
                 <div class="fruit-item">
-                    <div class="fruit-icon">
-                        <span class="fruit-emoji-large">🍎</span>
+                    <div class="fruit-image-container">
+                        <img src="https://images.unsplash.com/photo-1560806887-1e4cd0b6cbd6?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Fresh Red Apple" class="fruit-real-image">
                     </div>
                     <h5>Apple</h5>
                     <p>Crisp, sweet, and nutritious</p>
@@ -126,8 +118,8 @@
             </div>
             <div class="col-lg-3 col-md-6">
                 <div class="fruit-item">
-                    <div class="fruit-icon">
-                        <span class="fruit-emoji-large">🍌</span>
+                    <div class="fruit-image-container">
+                        <img src="https://images.unsplash.com/photo-1571771894821-ce9b6c11b08e?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Fresh Yellow Banana" class="fruit-real-image">
                     </div>
                     <h5>Banana</h5>
                     <p>Rich in potassium and energy</p>
@@ -135,8 +127,8 @@
             </div>
             <div class="col-lg-3 col-md-6">
                 <div class="fruit-item">
-                    <div class="fruit-icon">
-                        <span class="fruit-emoji-large">🍇</span>
+                    <div class="fruit-image-container">
+                        <img src="https://images.unsplash.com/photo-1537640538966-79f369143f8f?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Fresh Purple Grapes" class="fruit-real-image">
                     </div>
                     <h5>Grapes</h5>
                     <p>Antioxidant-rich clusters</p>
@@ -144,8 +136,8 @@
             </div>
             <div class="col-lg-3 col-md-6">
                 <div class="fruit-item">
-                    <div class="fruit-icon">
-                        <span class="fruit-emoji-large">🍉</span>
+                    <div class="fruit-image-container">
+                        <img src="https://images.unsplash.com/photo-1587049352846-4a222e784d38?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Fresh Watermelon Slice" class="fruit-real-image">
                     </div>
                     <h5>Watermelon</h5>
                     <p>Hydrating summer refresher</p>
