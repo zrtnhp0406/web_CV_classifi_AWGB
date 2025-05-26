@@ -119,10 +119,7 @@ html {
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(45deg, 
-        rgba(var(--primary), 0.1) 0%,
-        rgba(var(--secondary), 0.1) 100%),
-        url('https://pixabay.com/get/g0aaa06b8e5cfa7a8dc76e67c6afa577f73527ea0d7fe0c1b9f1816034cb6c869695c43949391ce2e50997b8df663efbe7605036ba9196dc5a9a1d96ce47ab12d_1280.jpg');
+    background: url('https://images.unsplash.com/photo-1542838132-92c53300491e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2074&q=80');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
@@ -136,8 +133,9 @@ html {
     width: 100%;
     height: 100%;
     background: linear-gradient(135deg, 
-        rgba(var(--primary), 0.8) 0%,
-        rgba(var(--primary-dark), 0.6) 100%);
+        rgba(var(--primary), 0.7) 0%,
+        rgba(var(--primary-dark), 0.5) 50%,
+        rgba(var(--secondary), 0.6) 100%);
     z-index: -1;
 }
 
@@ -239,7 +237,10 @@ html {
 /* Sections */
 .features {
     padding: var(--section-padding);
-    background: white;
+    background: linear-gradient(135deg, 
+        rgba(var(--primary), 0.02) 0%,
+        rgba(var(--secondary), 0.05) 50%,
+        rgba(var(--primary), 0.03) 100%);
 }
 
 .section-title {
@@ -387,7 +388,10 @@ html {
 /* Supported Fruits */
 .supported-fruits {
     padding: var(--section-padding);
-    background: white;
+    background: linear-gradient(45deg, 
+        rgba(var(--primary), 0.05) 0%,
+        rgba(255, 255, 255, 1) 50%,
+        rgba(var(--secondary), 0.03) 100%);
 }
 
 .fruit-item {
